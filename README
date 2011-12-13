@@ -1,0 +1,19 @@
+    Inheriting from PyOnJs will add a dumps to instances, and loads to the class.
+    instance.dumps() dumps out to a json string, where Klass.loads(...) will return an
+    instance of Klass initialized from the string.
+
+    Internally this relies upon the default json library in python. What it adds is the
+    ability for classes to define _json and _jsonc attributes to control the saving and
+    loading of attributes. Only the top level to extends PyOnJs, but all levels need 
+    have _json and _jsonc.
+
+    _json must be a list of the names of attributes that will be serialized.
+
+    _jsonc is an optional dictionary that maps property names to the types that they
+    should be. The types can either be a single class, or a list for custom types nested
+    inside lists or dictionaries.  At this point dictionaries can only be strings to
+    other types. For example: [list, dict, Klass] would be interpreted as a list of
+    dicts that map from strings to instances of Klass.
+
+    If any attributes are missing from an object being de-serialized, an exception will
+    be thrown.
