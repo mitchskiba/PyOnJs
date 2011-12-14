@@ -1,6 +1,7 @@
     Inheriting from PyOnJs will add a dumps to instances, and loads to the class.
     instance.dumps() dumps out to a json string, where Klass.loads(...) will return an
-    instance of Klass initialized from the string.
+    instance of Klass initialized from the string. Only works in Python 3.
+
 
     Internally this relies upon the default json library in python. What it adds is the
     ability for classes to define _json and _jsonc attributes to control the saving and
